@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/nav_life"
+        android:title="Life Insurance" />
+
+    <item
+        android:id="@+id/nav_travel"
+        android:title="Travel Insurance" />
+    <item
+        android:id="@+id/nav_auto"
+        android:title="Auto Insurance" />
+
+    <item
+        android:id="@+id/nav_health"
+        android:title="Health Insurance" />
+
+    <item
+        android:id="@+id/nav_accidental"
+        android:title="Accidental Insurance" />
+    <item
+        android:id="@+id/nav_retirement"
+        android:title="Retirement Insurance" />
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/log_out"
+            android:title="Log out" />
+
+    </group>
+
+</menu>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_resul"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="60dp"
+        android:text="VISION INSURANCE"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/loginBox"
+        android:layout_width="360dp"
+        android:layout_height="315dp"
+        android:layout_below="@+id/title"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="110dp"
+        app:cardBackgroundColor="@color/resul_blue">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/off_white"
+                android:drawableStart="@drawable/ic_outline_person"
+                android:drawablePadding="10dp"
+                android:hint="Email or Mobile number"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/off_white"
+                android:textColorHint="@color/off_white"
+                android:autofillHints="username" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/off_white"
+                android:drawableStart="@drawable/ic_outline_lock_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColor="@color/off_white"
+                android:textColorHint="@color/off_white"
+                android:autofillHints="password" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password ?"
+                android:textColor="@color/off_white"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginBottom="10dp">
+            </TextView>
+
+            <Button
+                android:layout_width="335dp"
+                android:id="@+id/loginButton"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Login"
+                android:background="@drawable/my_button" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skip Now"
+                android:textSize="16dp"
+                android:textColor="@color/off_white"
+                android:layout_marginStart="147dp"
+                android:textStyle="bold">
+            </TextView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/bottomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account?"
+        android:layout_below="@+id/loginBox"
+        android:layout_marginTop="185dp"
+        android:textSize="16dp"
+        android:layout_marginStart="60dp"
+        android:textColor="@color/dark_blue">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomText_2"
+        android:textSize="16dp"
+        android:text="Create One"
+        android:textColor="@color/off_white"
+        android:layout_marginTop="185dp"
+        android:layout_marginStart="5dp"
+        android:layout_below="@+id/loginBox"
+        android:layout_toRightOf="@+id/bottomText">
+
+    </TextView>
+
+</RelativeLayout>
