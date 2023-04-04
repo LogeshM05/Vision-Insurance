@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/notification"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/notification_icon">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/n_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/notification"
+                android:text="Welcome to Vision Insurance"
+                android:textColor="@color/resul_blue">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/n_subTitle"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/notification"
+                android:layout_below="@+id/n_title"
+                android:text="Low cost insurance with multiple features "
+                android:textColor="@color/light_blue">
+            </TextView>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/n_subTitle"
+                android:clickable="true"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Apply now">
+            </Button>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/n_subTitle"
+                android:clickable="true"
+                android:layout_toRightOf="@+id/button1"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Cancel"
+                tools:ignore="ButtonOrder">
+            </Button>
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/n_subTitle"
+                android:layout_toRightOf="@+id/button2"
+                android:clickable="true"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Delete">
+            </Button>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="340dp"
+        android:layout_below="@+id/card"
+        android:layout_height="150dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/notification2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/notification_icon">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/n_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/notification2"
+                android:text="Welcome to Vision Insurance"
+                android:textColor="@color/resul_blue">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/n_subtitle2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/notification2"
+                android:layout_below="@+id/n_title2"
+                android:text="Low cost insurance with multiple features "
+                android:textColor="@color/light_blue">
+            </TextView>
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/n_subtitle2"
+                android:clickable="true"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Apply now">
+            </Button>
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/n_subtitle2"
+                android:clickable="true"
+                android:layout_toRightOf="@+id/btn1"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Cancel">
+            </Button>
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/n_subtitle2"
+                android:layout_toRightOf="@+id/btn2"
+                android:clickable="true"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Delete">
+            </Button>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card3"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/card2"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/notification3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/notification_icon">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/n_title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/notification3"
+                android:text="Welcome to Vision Insurance"
+                android:textColor="@color/resul_blue">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/subTitle3"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/notification3"
+                android:layout_below="@+id/n_title3"
+                android:text="Low cost insurance with multiple features "
+                android:textColor="@color/light_blue">
+            </TextView>
+            <Button
+                android:id="@+id/button1_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/subTitle3"
+                android:clickable="true"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Apply now">
+            </Button>
+            <Button
+                android:id="@+id/button2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/subTitle3"
+                android:clickable="true"
+                android:layout_toRightOf="@+id/button1_3"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Cancel"
+                tools:ignore="ButtonOrder">
+            </Button>
+            <Button
+                android:id="@+id/button3_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/subTitle3"
+                android:layout_toRightOf="@+id/button2_3"
+                android:clickable="true"
+                android:textColor="@color/dark_grey"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Delete">
+            </Button>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.HealthInsuranceFragment">
+
+    <TextView
+        android:id="@+id/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Health Insurance"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/text_color"
+        android:layout_marginStart="23dp"/>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vision_health_insurance_policies_ensure_that_you_and_your_loved_ones_get_read_more"
+        android:layout_below="@id/heading1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="23dp">
+    </TextView>
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read More"
+        android:textColor="@color/readtext"
+        android:layout_below="@id/heading1"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="125dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Who would you like to insure?"
+        android:layout_below="@+id/text2"
+        android:layout_alignStart="@+id/heading1"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black2">
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/topLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text3"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/firstLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text3"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/conditions"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_view"
+                android:backgroundTint="@color/off_white2"
+                android:buttonTint="@color/light_blue"
+                android:onClick="onClickCheckBox"
+                android:text="Self"
+                android:layout_margin="10dp"
+                android:textColor="@color/light_grey"
+                tools:ignore="UsingOnClickInXml" />
+
+            <CheckBox
+                android:id="@+id/conditions2"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:onClick="onClickCheckBox"
+                android:layout_margin="10dp"
+                android:background="@drawable/search_view"
+                android:backgroundTint="@color/off_white2"
+                android:buttonTint="@color/light_blue"
+                android:text="Son"
+                android:textColor="@color/light_grey" />
+
+            <CheckBox
+                android:id="@+id/conditions3"
+                android:layout_width="140dp"
+                android:onClick="onClickCheckBox"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_view"
+                android:backgroundTint="@color/off_white2"
+                android:buttonTint="@color/light_blue"
+                android:text="Father"
+                android:textColor="@color/light_grey" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/secondLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/conditions4"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/search_view"
+                android:backgroundTint="@color/off_white2"
+                android:buttonTint="@color/light_blue"
+                android:text="Spouse"
+                android:onClick="onClickCheckBox"
+                android:textColor="@color/light_grey" />
+
+            <CheckBox
+                android:id="@+id/conditions5"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_view"
+                android:backgroundTint="@color/off_white2"
+                android:buttonTint="@color/light_blue"
+                android:text="Daughter"
+                android:layout_margin="10dp"
+                android:onClick="onClickCheckBox"
+                android:textColor="@color/light_grey" />
+
+            <CheckBox
+                android:id="@+id/conditions6"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_view"
+                android:backgroundTint="@color/off_white2"
+                android:buttonTint="@color/light_blue"
+                android:text="Mother"
+                android:layout_margin="10dp"
+                android:onClick="onClickCheckBox"
+                android:textColor="@color/light_grey" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="320dp"
+        android:id="@+id/submitButton"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@+id/topLinear"
+        android:layout_marginBottom="10dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="15dp"
+        android:text="Continue"
+        android:textColor="@color/black2"
+        android:backgroundTint="@color/yellow"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By clicking on “Continue”, you agree to our Privacy Policy and Terms of use"
+        android:layout_below="@+id/submitButton"
+        android:textColor="@color/off_white"
+        android:textSize="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp">
+    </TextView>
+</RelativeLayout>

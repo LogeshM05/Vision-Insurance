@@ -2,37 +2,63 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <group
+        android:id="@+id/group1">
     <item
         android:id="@+id/nav_home"
+        android:icon="@drawable/ic_action_home"
         android:title="@string/home" />
-
-    <item
-        android:id="@+id/nav_life"
-        android:title="Life Insurance" />
-
-    <item
-        android:id="@+id/nav_travel"
-        android:title="Travel Insurance" />
-    <item
-        android:id="@+id/nav_auto"
-        android:title="Auto Insurance" />
-
-    <item
-        android:id="@+id/nav_health"
-        android:title="Health Insurance" />
-
-    <item
-        android:id="@+id/nav_accidental"
-        android:title="Accidental Insurance" />
-    <item
-        android:id="@+id/nav_retirement"
-        android:title="Retirement Insurance" />
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/log_out"
-            android:title="Log out" />
-
     </group>
 
+    <group android:id="@+id/group2">
+    <item
+        android:id="@+id/nav_life"
+        android:icon="@drawable/ic_action_life"
+        android:title="Life Insurance" />
+    </group>
+
+    <group android:id="@+id/group3">
+    <item
+        android:id="@+id/nav_travel"
+        android:icon="@drawable/travel_insurance1"
+        android:title="Travel Insurance" />
+    </group>
+
+    <group android:id="@+id/group4">
+    <item
+        android:id="@+id/nav_auto"
+        android:icon="@drawable/car_insurance4"
+        android:title="Auto Insurance" />
+    </group>
+
+    <group android:id="@+id/group5">
+    <item
+        android:id="@+id/nav_health"
+        android:icon="@drawable/life_protection1"
+        android:title="Health Insurance" />
+    </group>
+
+    <group android:id="@+id/group6">
+    <item
+        android:id="@+id/nav_accidental"
+        android:icon="@drawable/accident1"
+        android:title="Accidental Insurance" />
+    </group>
+    <group android:id="@+id/group7">
+    <item
+        android:id="@+id/nav_retirement"
+        android:icon="@drawable/retirement1"
+        android:title="Retirement Insurance" />
+    </group>
+    <group android:id="@+id/group8">
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/shutdown"
+        android:title="Logout" />
+    </group>
+<group android:id="@+id/group9">
+<item android:id="@+id/nav_final"
+    android:title="">
+</item>
+</group>
 </menu>

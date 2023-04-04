@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AutoInsuranceFragment">
+
+    <TextView
+        android:id="@+id/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Health Insurance"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/text_color"
+        android:layout_marginStart="23dp"/>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vision_health_insurance_policies_ensure_that_you_and_your_loved_ones_get_read_more"
+        android:layout_below="@id/heading1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="23dp">
+    </TextView>
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read More"
+        android:textColor="@color/readtext"
+        android:layout_below="@id/heading1"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="125dp">
+    </TextView>
+    </RelativeLayout>
