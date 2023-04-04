@@ -4,35 +4,40 @@
 
     <item
         android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/home" />
 
     <item
         android:id="@+id/nav_life"
+        android:icon="@drawable/life_menu"
         android:title="Life Insurance" />
 
     <item
         android:id="@+id/nav_travel"
+        android:icon="@drawable/ic_baseline_airplanemode_active_24"
         android:title="Travel Insurance" />
     <item
         android:id="@+id/nav_auto"
+        android:icon="@drawable/ic_baseline_directions_auto_24"
         android:title="Auto Insurance" />
 
     <item
         android:id="@+id/nav_health"
+        android:icon="@drawable/ic_baseline_health_and_safety_24"
         android:title="Health Insurance" />
 
     <item
         android:id="@+id/nav_accidental"
+        android:icon="@drawable/accidental"
         android:title="Accidental Insurance" />
     <item
         android:id="@+id/nav_retirement"
+        android:icon="@drawable/retirement_menu"
         android:title="Retirement Insurance" />
+    <item
+        android:id="@+id/nav_notification"
+        android:icon="@drawable/ic_outline_notifications_active_24"
+        android:title="Notification Inbox" />
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/log_out"
-            android:title="Log out" />
-
-    </group>
 
 </menu>

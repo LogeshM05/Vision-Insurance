@@ -7,11 +7,12 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="black2">#201F1F</color>
     <color name="bg_resul">#060F3C</color>
+    <color name="dark_grey">#464545</color>
     <color name="white">#FFFFFFFF</color>
     <color name="off_white">#C8C4C4</color>
     <color name="light_grey">#E4E3E3</color>
-
     <color name="light_blue">#0366BE</color>
     <color name="resul_blue">#051285</color>
     <color name="card">#162BEA</color>

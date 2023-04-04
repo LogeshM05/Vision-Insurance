@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.VisionInsurance" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.VisionInsurance" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/resul_blue</item>
         <item name="android:textColorPrimary">@color/black</item>
@@ -20,7 +20,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.VisionInsurance.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.VisionInsurance.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
+
 
     <style name="Theme.VisionInsurance.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
