@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "789352067497",
+    "project_id": "vision-insurance-388ea",
+    "storage_bucket": "vision-insurance-388ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789352067497:android:45c033dfe9324e2d9b54b8",
+        "android_client_info": {
+          "package_name": "com.example.visioninsurance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789352067497-e2stb8ivq7u3d45tk0o8ido58pvmk76b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYIlvdIBwG3pnq04Y1b3CNQM1YBriA-yk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789352067497-e2stb8ivq7u3d45tk0o8ido58pvmk76b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
