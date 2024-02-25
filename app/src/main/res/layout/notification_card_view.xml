@@ -25,54 +25,61 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:padding="3dp"
                 android:text="SmartDx"
                 android:textColor="@color/black"
                 android:textSize="@dimen/rh2" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_timestamp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:maxLines="1"-->
-<!--                android:layout_alignParentLeft="true"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:padding="3dp"-->
-<!--                android:text="5min"-->
-<!--                android:textColor="@color/resBlack"-->
-<!--                android:textSize="@dimen/rh3" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_timestamp"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:maxLines="1"-->
+            <!--                android:layout_alignParentLeft="true"-->
+            <!--                android:layout_alignParentEnd="true"-->
+            <!--                android:padding="3dp"-->
+            <!--                android:text="5min"-->
+            <!--                android:textColor="@color/resBlack"-->
+            <!--                android:textSize="@dimen/rh3" />-->
 
             <TextView
                 android:id="@+id/sub_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:maxLines="3"
+                android:maxLines="4"
                 android:padding="3dp"
                 android:text="Campaign1"
                 android:textColor="@android:color/black"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/notification_id"
+            <ImageView
+                android:id="@+id/notificationImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/sub_title"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/accident"
+                />
+
+            <LinearLayout
+                android:id="@+id/buttonLinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:maxLines="1"
-                android:textColor="@android:color/black"
-                android:text="Notification ID"
-                android:textSize="12sp"
-                android:layout_below="@+id/sub_title"/>
-
+                android:layout_below="@+id/notificationImage"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal"
+                android:padding="5dp">
             <Button
-                android:id="@+id/applyButton1"
+                android:id="@+id/cusBtn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
+                android:layout_weight="1"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_below="@+id/notification_id"
                 android:clickable="true"
                 android:textColor="@color/dark_grey"
                 android:focusable="true"
@@ -80,38 +87,21 @@
                 android:text="Apply now">
             </Button>
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/cusBtn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="35dp"
-                android:layout_below="@+id/notification_id"
+                android:layout_weight="1"
                 android:clickable="true"
-                android:layout_toEndOf="@+id/applyButton1"
                 android:textColor="@color/dark_grey"
                 android:focusable="true"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="Cancel"
                 tools:ignore="ButtonOrder">
             </Button>
-            <Button
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:onClick="onClickDeleteNotification"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="35dp"
-                android:layout_below="@+id/notification_id"
-                android:layout_toRightOf="@+id/button2"
-                android:clickable="true"
-                android:textColor="@color/dark_grey"
-                android:focusable="true"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="Delete"
-                tools:ignore="OnClick">
-            </Button>
+
+            </LinearLayout>
 
         </RelativeLayout>
 

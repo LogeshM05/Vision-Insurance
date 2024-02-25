@@ -13,6 +13,7 @@ import com.example.visioninsurance.R
 import io.mob.resu.reandroidsdk.AppConstants
 import io.mob.resu.reandroidsdk.IDeepLinkInterface
 import io.mob.resu.reandroidsdk.ReAndroidSDK
+import org.json.JSONObject
 import java.util.*
 import kotlin.concurrent.timerTask
 
@@ -21,11 +22,59 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
+
+
         if (supportActionBar != null) {
             supportActionBar!!.hide()
         }
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
         AppConstants.LogFlag=true
+        preference = getSharedPreferences("UserDetails", MODE_PRIVATE)
+
+
+
+        val bundle = intent.extras
+        if (bundle != null) {
+            val value = bundle.getString("customParams", "{}")
+            val jsonObject = JSONObject(value)
+            val fragmentValue = jsonObject.optString("fragmentName")
+            Log.i("data", "$bundle")
+            userValue.putString("fragmentName", fragmentValue)
+            userValue.apply()
+        }
+
+        val backgroundImage = findViewById<ImageView>(R.id.bg)
+        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.splash_slide)
+        backgroundImage.startAnimation(slideAnimation)
+
+
+
+        if (preference.getBoolean("isLogin", false)) {
+            if (bundle != null) {
+                val value = bundle.getString("customParams", "{}")
+                val jsonObject = JSONObject(value)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val fragmentValue = jsonObject.optString("fragmentName")
+                    val intent = Intent(this, DashBoard::class.java)
+                    intent.putExtra("fragmentName", fragmentValue)
+                    startActivity(intent)
+                    finish()
+                }, 800)
+            } else {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val intent = Intent(this, DashBoard::class.java)
+                    startActivity(intent)
+                    finish()
+                }, 800)
+            }
+        } else {
+            waitActivity(bundle)
+        }
 
         ReAndroidSDK.getInstance(this).getCampaignData(object : IDeepLinkInterface {
             override fun onInstallDataReceived(data: String) {
@@ -37,45 +86,28 @@ class StartActivity : AppCompatActivity() {
             }
         })
 
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-
-        val backgroundImage = findViewById<ImageView>(R.id.bg)
-        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.splash_slide)
-        backgroundImage.startAnimation(slideAnimation)
-
-        // we used the postDelayed(Runnable, time) method
-        // to send a message with a delayed time.
-        //Normal Handler is deprecated , so we have to change the code little bit
-
-        // Handler().postDelayed({
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 2000)
-
-
-       // startMain()
-
     }
 
-//    private fun startMain(){
-//
-//        if(!isDestroyed){
-//            val intent= Intent(this, MainActivity::class.java)
-//            val task= timerTask {
-//                if(!isDestroyed){
-//
-//                    startActivity(intent)
-//                    finish()
-//                }
-//            }
-//            val timer= Timer()
-//            timer.schedule(task,800)
-//        }
-//    }
+    private fun waitActivity(bundle: Bundle?) {
+        if (bundle != null) {
+            val value = bundle.getString("customParams", "{}")
+            val jsonObject = JSONObject(value)
+            val fragmentValue = jsonObject.optString("fragmentName")
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("fragmentName", fragmentValue)
+                startActivity(intent)
+                finish()
+            }, 800)
+        } else{
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 800)
+        }
+
+
+    }
 
 }

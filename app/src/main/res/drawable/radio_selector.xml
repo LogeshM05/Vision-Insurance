@@ -5,5 +5,5 @@
         android:drawable="@drawable/radio_selected"/>
 
     <item android:state_checked="false"
-        android:drawable="@drawable/radio_color"/>
+        android:drawable="@drawable/radio_color" />
 </selector>

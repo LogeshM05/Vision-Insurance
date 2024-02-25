@@ -1,14 +1,17 @@
 package com.example.visioninsurance.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visioninsurance.R
 import com.example.visioninsurance.activity.DashBoard
+import com.example.visioninsurance.activity.preference
 import com.example.visioninsurance.adaptors.BottomCarousalAdapter
 import com.example.visioninsurance.adaptors.CarousalRecyclerAdapter
 import com.example.visioninsurance.adaptors.MiddleCarousalAdapter
@@ -47,12 +50,19 @@ open class DashBoardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         initializeViews(view)
+
+
+        val userName = view.findViewById<TextView>(R.id.text2)
+        val textValue = preference.getString("email","")
+        userName.text =textValue
+
     }
 
     private fun initializeViews(view: View) {
         topCarousalView = view.findViewById<RecyclerView>(R.id.recyclerView1)
         topCarousalView.setHasFixedSize(true)
-        topCarousalView.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+        topCarousalView.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         val imageList: MutableList<Int> = ArrayList()
         imageList.add(R.drawable.airplane)
@@ -61,6 +71,25 @@ open class DashBoardFragment : Fragment() {
         carousalRecyclerAdapter = CarousalRecyclerAdapter(imageList)
         topCarousalView.adapter = carousalRecyclerAdapter
 
+        carousalRecyclerAdapter.setOnClickListener(object :
+            CarousalRecyclerAdapter.OnClickListener {
+            override fun onClick(position: Int, list: List<Int>) {
+
+                when (position) {
+                    0 -> {
+                        conversionTracking()
+                        parentActivity.loadFragment(LifeInsurance())
+                    }
+                    1 -> {
+                        parentActivity.loadFragment(AutoInsuranceFragment())
+                    }
+                    2 -> {
+                        parentActivity.loadFragment(HealthInsuranceFragment())
+                    }
+                }
+            }
+
+        })
 
         middleCarousalView = view.findViewById(R.id.recyclerView2)
         middleCarousalView.setHasFixedSize(true)
@@ -76,6 +105,33 @@ open class DashBoardFragment : Fragment() {
         middleCarousalAdapter = MiddleCarousalAdapter(servicesList)
         middleCarousalView.adapter = middleCarousalAdapter
 
+        middleCarousalAdapter.setOnClickListener(object : MiddleCarousalAdapter.OnClickListener {
+            override fun onClick(position: Int, model: MiddleCarousalModel) {
+                when (position) {
+                    0 -> {
+                        parentActivity.loadFragment(AutoInsuranceFragment())
+                    }
+                    1 -> {
+                        parentActivity.loadFragment(LifeInsurance())
+                    }
+                    2 -> {
+                        parentActivity.loadFragment(HealthInsuranceFragment())
+                    }
+                    3 -> {
+                        parentActivity.loadFragment(TravelInsuranceFragment())
+                    }
+                    4 ->{
+                        parentActivity.loadFragment(AccidentalFragment())
+                    }
+                    5 ->{
+                        parentActivity.loadFragment(RetirementPlansFragment())
+                    }
+                }
+            }
+
+        })
+
+
         bottomCarousalView = view.findViewById(R.id.recyclerView3)
         bottomCarousalView.setHasFixedSize(true)
         bottomCarousalView.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
@@ -88,6 +144,33 @@ open class DashBoardFragment : Fragment() {
         bottomList.add(BottomCarousalModel(R.drawable.retirement1,"Retirement Plans","17 plans"))
         bottomCarousalAdapter = BottomCarousalAdapter(bottomList)
         bottomCarousalView.adapter = bottomCarousalAdapter
+
+        bottomCarousalAdapter.setOnClickListener(object : BottomCarousalAdapter.OnClickListener{
+            override fun onClick(position: Int, model: BottomCarousalModel) {
+                when (position) {
+                    0 -> {
+                        locationUpdate()
+                        parentActivity.loadFragment(AutoInsuranceFragment())
+                    }
+                    1 -> {
+                        parentActivity.loadFragment(LifeInsurance())
+                    }
+                    2 -> {
+                        parentActivity.loadFragment(HealthInsuranceFragment())
+                    }
+                    3 -> {
+                        parentActivity.loadFragment(TravelInsuranceFragment())
+                    }
+                    4 ->{
+                        parentActivity.loadFragment(AccidentalFragment())
+                    }
+                    5 ->{
+                        parentActivity.loadFragment(RetirementPlansFragment())
+                    }
+                }
+            }
+
+        })
     }
 
     private fun locationUpdate() {
@@ -107,16 +190,6 @@ open class DashBoardFragment : Fragment() {
 
     open fun initializeActivity() {
         parentActivity = activity as DashBoard
-
-    }
-
-    private fun showNotification() {
-        val title = "Welcome,"
-        val body = "get more updates about Auto Insurance from Vision Insurance"
-        activity?.let { createNotification(it,title,body) }
-
-        ReAndroidSDK.getInstance(activity).addNewNotification(title,body,"com.example.visioninsurance.activity.DashBoard")
-        parentActivity.loadFragment(AutoInsuranceFragment())
 
     }
 

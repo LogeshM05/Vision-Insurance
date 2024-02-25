@@ -55,16 +55,6 @@ open class RetirementPlansFragment : Fragment() {
 
     }
 
-//    private fun showNotification() {
-//
-//        val title = "Form submitted successfully"
-//        val body = "Thanks for registering you will get more updates from Vision Insurance"
-//        ReAndroidSDK.getInstance(activity)
-//            .addNewNotification(title, body, "com.example.visioninsurance.activity.DashBoard")
-//
-//
-//    }
-
     private fun eventTracking() {
 
         ReAndroidSDK.getInstance(activity).onTrackEvent("Registration Form")

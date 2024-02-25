@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_margin="10dp"
+    android:layout_width="@dimen/_180sdp"
+    android:layout_margin="@dimen/_8sdp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -9,12 +9,12 @@
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        app:cardElevation="5dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="5dp"
-        app:cardCornerRadius="10dp">
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:cardElevation="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_5sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,10 +23,10 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@id/card_text1"
                 android:src="@drawable/health_bg">
             </ImageView>
@@ -35,11 +35,11 @@
                 android:id="@+id/card_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:text="Auto Insurance"
                 android:textColor="@color/light_grey"
-                android:textSize="18sp"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold">
             </TextView>
 
@@ -48,14 +48,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/card_text1"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:text="14plans"
-                    android:drawablePadding="3dp"
+                    android:drawablePadding="@dimen/_3sdp"
                     android:drawableStart="@drawable/ic_outline_featured_play_list_24"
                     android:textColor="@color/light_grey"
-                    android:textSize="12sp">
+                    android:textSize="@dimen/_10ssp">
                 </TextView>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

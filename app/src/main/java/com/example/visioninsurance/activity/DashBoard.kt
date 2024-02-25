@@ -1,25 +1,20 @@
 package com.example.visioninsurance.activity
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.*
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.View.*
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import butterknife.BindView
 import butterknife.OnClick
 import com.example.visioninsurance.*
@@ -35,7 +30,8 @@ import org.json.JSONObject
 import java.util.*
 
 
-var myEdit: SharedPreferences.Editor = preference.edit()
+var userValue: SharedPreferences.Editor = preference.edit()
+lateinit var mNotificationCount: TextView
 
 class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -45,21 +41,7 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     lateinit var fragment: Fragment
     lateinit var iDashBoardActivityPresenter: IDashBoardActivityPresenter
 
-
-    @BindView(R.id.tv_count)
-    lateinit var mNotificationCount: TextView
-
-    private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        // we will receive data updates in onReceive method.
-        @SuppressLint("SetTextI18n")
-        override fun onReceive(context: Context?, intent: Intent) {
-            if (intent.action == "notification-count-update") {
-                AppNotification.cancel(this@DashBoard, intent.extras!!.getInt("notificationId"))
-
-            }
-            mNotificationCount.visibility = VISIBLE
-        }
-    }
+    private var pressedTime: Long = 0
 
 
     @SuppressLint("MissingInflatedId", "NonConstantResourceId")
@@ -68,15 +50,13 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     lateinit var imageView: ImageView
 
 
-    @BindView(R.id.deleteButton)
-    lateinit var delete: TextView
+//    @BindView(R.id.deleteButton)
+//    lateinit var delete: TextView
+
 
 
     @BindView(R.id.tv_count)
     lateinit var count: TextView
-
-//    @BindView(R.id.logout)
-//    lateinit var logoutText: TextView
 
 
     @SuppressLint("NonConstantResourceId")
@@ -91,33 +71,33 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         val back1 = findViewById<ImageView>(R.id.backMenu)
         back1.visibility = GONE
 
-//        if (intent != null && intent.extras != null) {
-//            try {
-//                val bundle = intent.extras
-//
-//                Log.d("bundle","$bundle")
-//                val activityName = bundle!!.getString("activityName", "")
-//                val fragmentName = bundle.getString("fragmentName", "")
-//                val jsonObject = JSONObject(bundle.getString("customParams", ""))
-//               // appNavigation(fragmentName)
-//            } catch (e: java.lang.Exception) {
-//            }
-//        }
-
-
         replaceFragment(DashBoardFragment())
 
 
+
         drawerLayout = findViewById(R.id.drawerLayout)
-        actionBarDrawerToggle =
-            ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
-        drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
 
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
-        LocalBroadcastManager.getInstance(this)
-            .registerReceiver(broadcastReceiver, IntentFilter("notification-count-update"))
+
+        val fragmentName = intent.getStringExtra("fragmentName")
+        appNavigation(fragmentName)
+
+        val headerView = navigationView.getHeaderView(0)
+
+        val headerItem = headerView.findViewById<TextView>(R.id.header_name)
+        val textValue = preference.getString("email","")
+        headerItem.text = textValue
+
+        val lastLogin = headerView.findViewById<TextView>(R.id.textView3)
+        val loginValue = preference.getString("lastLogin","")
+        lastLogin.text=loginValue
+
+        if (preference.getBoolean("isLogin", false)) {
+            resulticksRegister()
+        }
+
+
 
         ReAndroidSDK.getInstance(this).getCampaignData(object : IDeepLinkInterface {
             override fun onInstallDataReceived(data: String) {
@@ -141,66 +121,61 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             }
         })
 
-        var notificationCount = findViewById<TextView>(R.id.tv_count)
+        val notificationCount = findViewById<TextView>(R.id.tv_count)
         if (ReAndroidSDK.getInstance(this@DashBoard).unReadNotificationCount > 0) {
             notificationCount.visibility = VISIBLE
             notificationCount.text =
                 "" + ReAndroidSDK.getInstance(this@DashBoard).unReadNotificationCount
         }
-        resulticksRegister()
+        //resulticksRegister()
 
-//        val bundle = intent.extras
-//        if (bundle != null) {
-//            if (bundle.containsKey("resumeJourney")) {
-//                appNavigation(bundle.getString("resumeJourney", "{}"))
-//            } else {
-//                Log.e("resumeJourney", "{}")
-//            }
-//        }
+
     }
 
-    fun appNavigation(data: String) {
-        try {
-            val jsonObject = JSONObject(data)
-            var screenName = ""
-            var fragmentName = ""
-            screenName =
-                if (jsonObject.optString("source", "").equals("mobile", ignoreCase = true)) {
-                    jsonObject.optString("fragmentName").lowercase(Locale.getDefault())
-                } else {
-                    jsonObject.optString("url").lowercase(Locale.getDefault())
+    private fun resulticksRegister() {
+
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.e("onComplete", "Fetching FCM registration token failed", task.exception)
+                    return@OnCompleteListener
                 }
-            if (screenName.contains("accidental"))
-                fragmentName = "AccidentalFragment"
-            else if (screenName.contains("autoInsurance"))
-                fragmentName = "AutoInsuranceFragment"
-            else if (screenName.contains("dashBoard"))
-                fragmentName = "DashBoardFragment"
-            else if (screenName.contains("health"))
-                fragmentName = "HealthInsuranceFragment"
-            else if (screenName.contains("life"))
-                fragmentName = "LifeInsurance"
-            else if (screenName.contains("retirement"))
-                fragmentName = "RetirementPlansFragment"
-            else if (screenName.contains("travel"))
-                fragmentName = "TravelInsuranceFragment"
-            else if (screenName.contains("inbox"))
-                fragmentName = "InboxFragment"
-            var fragment: Fragment? = null
-            when (fragmentName) {
-                "AccidentalFragment" -> fragment = AccidentalFragment()
-                "AutoInsuranceFragment" -> fragment = AutoInsuranceFragment()
-                "HealthInsuranceFragment" -> fragment = HealthInsuranceFragment()
-                "InboxFragment" -> fragment = InboxFragment()
-                "LifeInsurance" -> fragment = LifeInsurance()
-                "RetirementPlansFragment" -> fragment = RetirementPlansFragment()
-                "TravelInsuranceFragment" -> fragment = TravelInsuranceFragment()
-            }
-            fragment?.let { loadFragment(it) }
+                val token = task.result
+                val userDetails = MRegisterUser()
+                userDetails.userUniqueId = preference.getString("email", "")
+                userDetails.adId = "5"// mandatory
+                userDetails.name = "Logesh"
+                userDetails.email = preference.getString("email", "")
+                userDetails.phone = "+91 9600498010"
+                userDetails.age = "22"
+                userDetails.gender = "Male"
+                userDetails.profileUrl = "https://github.com/LogeshM05"
+                userDetails.dob = "05Jan2001"
+                userDetails.education = "UG"
+                userDetails.isEmployed = true
+                userDetails.isMarried = true
+                userDetails.deviceToken = token
+                val uniqueId = userDetails.userUniqueId
+                userValue.putString("UUID", uniqueId)
+                userValue.apply()
+                val value = preference.getString("UUID", "")
+                Log.i("UUID1", "$value")
+
+                ReAndroidSDK.getInstance(this).onDeviceUserRegister(userDetails)
+
+            })
+
+    }
+
+
+    private fun appNavigation(data: String?) {
+        try {
+            loadMenu(data)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
         }
     }
+
 
     open fun loadMenu(fragmentName: String?) {
         var fragment: Fragment? = null
@@ -222,85 +197,59 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
     }
 
-    @SuppressLint("CommitPrefEdits", "SetTextI18n")
-    private fun resulticksRegister() {
-
-
-        FirebaseMessaging.getInstance().token
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.e("onComplete", "Fetching FCM registration token failed", task.exception)
-                    return@OnCompleteListener
-                }
-                // Get new FCM registration token
-                val token = task.result
-
-                myEdit.putString("fcmToken", token)
-                Log.i("token", token)
-
-                val userDetails = MRegisterUser()
-                userDetails.userUniqueId = "LG003728"
-                userDetails.adId = "5"// mandatory
-                userDetails.name = "Logesh"
-                userDetails.email = preference.getString("email", "")
-                userDetails.phone = "+91 9600498010"
-                userDetails.age = "22"
-                userDetails.gender = "Male"
-                userDetails.profileUrl = "https://github.com/LogeshM05"
-                userDetails.dob = "05Jan2001"
-                userDetails.education = "UG"
-                userDetails.isEmployed = true
-                userDetails.isMarried = true
-                userDetails.deviceToken = token
-                val uniqueId = userDetails.userUniqueId
-                myEdit.putString("UUID", uniqueId)
-                myEdit.apply()
-                val value = preference.getString("UUID", "")
-                Log.i("UUID1", "$value")
-
-
-                ReAndroidSDK.getInstance(this).onDeviceUserRegister(userDetails)
-
-            })
-
-    }
+//    @SuppressLint("CommitPrefEdits", "SetTextI18n")
+//    private fun resulticksRegister() {
+//
+//
+//        FirebaseMessaging.getInstance().token
+//            .addOnCompleteListener(OnCompleteListener { task ->
+//                if (!task.isSuccessful) {
+//                    Log.e("onComplete", "Fetching FCM registration token failed", task.exception)
+//                    return@OnCompleteListener
+//                }
+//                // Get new FCM registration token
+//                val token = task.result
+//
+//                myEdit.putString("fcmToken", token)
+//                Log.i("token", token)
+//
+//                val userDetails = MRegisterUser()
+//                userDetails.userUniqueId = "LG003728"
+//                userDetails.adId = "5"// mandatory
+//                userDetails.name = "Logesh"
+//                userDetails.email = preference.getString("email", "")
+//                userDetails.phone = "+91 9600498010"
+//                userDetails.age = "22"
+//                userDetails.gender = "Male"
+//                userDetails.profileUrl = "https://github.com/LogeshM05"
+//                userDetails.dob = "05Jan2001"
+//                userDetails.education = "UG"
+//                userDetails.isEmployed = true
+//                userDetails.isMarried = true
+//                userDetails.deviceToken = token
+//                val uniqueId = userDetails.userUniqueId
+//                myEdit.putString("UUID", uniqueId)
+//                myEdit.apply()
+//                val value = preference.getString("UUID", "")
+//                Log.i("UUID1", "$value")
+//
+//
+//                ReAndroidSDK.getInstance(this).onDeviceUserRegister(userDetails)
+//
+//            })
+//
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_menu, menu)
-
-//        val drawerMenu: MenuItem = menu!!.findItem(R.id.hamburger_menu)
-//        drawerMenu.setOnMenuItemClickListener {
-//            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-//                drawerLayout.closeDrawer(GravityCompat.END)
-//            } else {
-//                drawerLayout.openDrawer(GravityCompat.END)
-//            }
-//            true
-//        }
-//
-//        val menuItem: MenuItem = menu.findItem(R.id.notification)
-//        menuItem.setOnMenuItemClickListener {
-//            //supportFragmentManager.beginTransaction().replace(R.id.drawerLayout, InboxFragment()).commit()
-//            true
-//        }
-//
-//        val back: MenuItem = menu.findItem(R.id.back)
-//        back.setOnMenuItemClickListener {
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//            //supportFragmentManager.beginTransaction().replace(R.id.drawerLayout, InboxFragment()).commit()
-//            true
-//        }
-
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        val headerName = findViewById<TextView>(R.id.header_name)
-        headerName.text = intent.extras?.getString("Name") ?: "Logesh"
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+
             return true
         }
 
@@ -314,9 +263,8 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         when (item.itemId) {
 
             R.id.nav_home -> {
-                // drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.END)
                 loadFragment(DashBoardFragment())
-
             }
             R.id.nav_life -> {
                 ReAndroidSDK.getInstance(this).onTrackEvent("Apply Insurance")
@@ -343,6 +291,12 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             }
 
 
+        }
+        var notificationCount = findViewById<TextView>(R.id.tv_count)
+        if (ReAndroidSDK.getInstance(this@DashBoard).unReadNotificationCount > 0) {
+            notificationCount.visibility = VISIBLE
+            notificationCount.text =
+                "" + ReAndroidSDK.getInstance(this@DashBoard).unReadNotificationCount
         }
         drawerLayout.closeDrawer(GravityCompat.END)
         return true
@@ -401,7 +355,7 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         if (condition1.isChecked) {
             condition1.backgroundTintList =
                 this.resources.getColorStateList(R.color.sky_blue)
-        } else  {
+        } else {
             condition1.backgroundTintList =
                 this.resources.getColorStateList(R.color.off_white2)
         }
@@ -409,11 +363,11 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         if (condition2.isChecked) {
             condition2.backgroundTintList =
                 this.resources.getColorStateList(R.color.sky_blue)
-        } else  {
+        } else {
             condition2.backgroundTintList =
                 this.resources.getColorStateList(R.color.off_white2)
         }
-         if (condition3.isChecked) {
+        if (condition3.isChecked) {
             condition3.backgroundTintList =
                 this.resources.getColorStateList(R.color.sky_blue)
         } else {
@@ -423,14 +377,14 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         if (condition4.isChecked) {
             condition4.backgroundTintList =
                 this.resources.getColorStateList(R.color.sky_blue)
-        } else  {
+        } else {
             condition4.backgroundTintList =
                 this.resources.getColorStateList(R.color.off_white2)
         }
         if (condition5.isChecked) {
             condition5.backgroundTintList =
                 this.resources.getColorStateList(R.color.sky_blue)
-        } else  {
+        } else {
             condition5.backgroundTintList =
                 this.resources.getColorStateList(R.color.off_white2)
         }
@@ -442,13 +396,45 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 this.resources.getColorStateList(R.color.off_white2)
         }
     }
+
+    fun onClickDate(v: View) {
+        val date = findViewById<EditText>(R.id.editText3)
+        date.setOnClickListener {
+
+            val c = Calendar.getInstance()
+
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this, { v, year, monthOfYear, dayOfMonth ->
+                    val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                    date.setText(dat)
+                },
+                year,
+                month,
+                day
+            )
+            datePickerDialog.show()
+        }
+    }
+
     @SuppressLint("UseCompatLoadingForColorStateLists")
 
-    @OnClick(R.id.notificationMenu)
+    @OnClick(R.id.notificationMenu, R.id.nav_notification_icon)
     open fun onClickNotification(v: View) {
-
-
+        val notificationCount = findViewById<TextView>(R.id.tv_count)
+        if (ReAndroidSDK.getInstance(this@DashBoard).unReadNotificationCount >= 0) {
+            notificationCount.visibility = VISIBLE
+            notificationCount.text =
+                "" + ReAndroidSDK.getInstance(this@DashBoard).unReadNotificationCount
+        }
+        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+            drawerLayout.closeDrawer(GravityCompat.END)
+        }
         loadFragment(InboxFragment())
+
     }
 
     open fun onClickLogout() {
@@ -459,11 +445,23 @@ class DashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         userDetails.email = preference.getString("email", "")
         userDetails.deviceToken = preference.getString("fcmToken", "")
         ReAndroidSDK.getInstance(this).onDeviceUserRegister(userDetails)
-
+        userValue.putBoolean("isLogin", false)
+        userValue.apply()
         Log.i("UUID1", "$uniqueId")
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+
+        // finish()
+
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
+
     }
 
 

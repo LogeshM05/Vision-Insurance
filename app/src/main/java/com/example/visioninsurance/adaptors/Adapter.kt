@@ -5,20 +5,24 @@ package com.example.visioninsurance.adaptors
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visioninsurance.R
-import com.example.visioninsurance.fragment.InboxFragment
-import org.json.JSONArray
 import org.json.JSONObject
-
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import org.json.JSONArray
+import org.json.JSONException
 
 class Adapter( private var notificationData: ArrayList<JSONObject>,private var notificationAdapterListener: NotificationAdapterListener) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
@@ -60,24 +64,101 @@ class Adapter( private var notificationData: ArrayList<JSONObject>,private var n
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //holder.setData(notificationData[position])
 
+
         val data = list[position]
         holder.textView1.text = data.optString("title")
         holder.textView2.text = data.optString("subTitle")
         holder.textView2.text = data.optString("body")
-        holder.textView3.text = data.optString("id")
+        val imageUrl = data.optString("url")
+        val customActionsString = data.optString("customActions")
+
+        try {
+            val customActionsArray = JSONArray(customActionsString)
+
+            if (customActionsArray.length() > 0) {
+                val firstAction = customActionsArray.getJSONObject(0)
+
+                val actionName1 = firstAction.optString("actionName")
+
+                holder.customBtn1.text = actionName1
+                if (customActionsArray.length() > 1) {
+                    val secondAction = customActionsArray.getJSONObject(1)
+                    val actionName2 = secondAction.optString("actionName")
+                    holder.customBtn2.text = actionName2
+                } else {
+                    holder.customBtn2.visibility = View.GONE
+                }
+
+            } else {
+                // Handle the case where there are no actions in the array
+                holder.customBtn1.visibility = View.GONE
+                holder.customBtn2.visibility = View.GONE
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+            // Handle the JSONException appropriately
+        }
+
+        if (imageUrl.isNotEmpty()) {
+            // If the URL is present, set visibility of ImageView and its layout to VISIBLE
+            holder.imageView.visibility = View.VISIBLE
+            Glide.with(holder.itemView)
+                .load(imageUrl)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(holder.imageView)
+        } else {
+            // If the URL is not present, set visibility of ImageView and its layout to GONE
+            holder.imageView.visibility = View.GONE
+            holder.imageView.layoutParams.height = 0 // Set height to 0 to remove space
+        }
 
         var bundle = Bundle()
 
-        holder.deleteButton.setOnClickListener {
-
-            listener.onClickDelete(list,position)
+        holder.customBtn1.setOnClickListener {
+            val intent = Intent()
+            listener.onCustomAction1CLick(list,position,intent)
            // InboxFragment().onDeleteNotification(data.optString("campaignId"),position)
 
         }
+        holder.customBtn2.setOnClickListener {
+            val intent = Intent()
+            listener.onCustomAction2CLick(list,position,intent)
 
-        holder.card.setOnClickListener {
+//            listener.onClickDelete(list,position)
+            // InboxFragment().onDeleteNotification(data.optString("campaignId"),position)
+
+        }
+
+        holder.imageView.setOnClickListener {
             listener.onClick(list,position)
         }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                // Do nothing, as we don't support moving items
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // Notify your listener about the swipe event
+                    listener.onClickDelete(list,viewHolder.layoutPosition)
+            }
+        }
+
+        // Attach the ItemTouchHelper to the RecyclerView
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
     override fun getItemCount(): Int {
@@ -89,12 +170,13 @@ class Adapter( private var notificationData: ArrayList<JSONObject>,private var n
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var notificationData: JSONObject
-        val textView3: TextView = itemView.findViewById(R.id.notification_id)
+        val imageView: ImageView = itemView.findViewById(R.id.notificationImage)
         val textView1: TextView = itemView.findViewById(R.id.title)
         val textView2: TextView = itemView.findViewById(R.id.sub_title)
-        val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
-        val applyButton:Button = itemView.findViewById(R.id.applyButton1)
-        val card:LinearLayout = itemView.findViewById(R.id.linearLayout)
+//        val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
+        val customBtn1:Button = itemView.findViewById(R.id.cusBtn1)
+        val customBtn2:Button = itemView.findViewById(R.id.cusBtn2)
+
 
 
     }

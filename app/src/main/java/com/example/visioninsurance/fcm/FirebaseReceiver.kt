@@ -12,7 +12,7 @@ import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.example.visioninsurance.R
 import com.example.visioninsurance.activity.DashBoard
-import com.example.visioninsurance.activity.myEdit
+import com.example.visioninsurance.activity.userValue
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import io.mob.resu.reandroidsdk.ReAndroidSDK
@@ -27,8 +27,8 @@ class FirebaseReceiver : FirebaseMessagingService() {
         super.onNewToken(token)
         Log.i("token", "Refreshed token :: $token")
 
-        myEdit.putString("fcmToken",token)
-        myEdit.apply()
+        userValue.putString("fcmToken",token)
+        userValue.apply()
 
     }
 
@@ -37,9 +37,9 @@ class FirebaseReceiver : FirebaseMessagingService() {
         Log.d("Tag1", "${remoteMessage.notification?.body}")
         Log.d("Tag1", "${remoteMessage.data}")
 
-        if (remoteMessage.notification != null) {
-            showNotification(remoteMessage.notification!!.title!!, remoteMessage.notification!!.body!!)
-        }
+//        if (remoteMessage.notification != null) {
+//            showNotification(remoteMessage.notification!!.title!!, remoteMessage.notification!!.body!!)
+//        }
         if(ReAndroidSDK.getInstance(this).onReceivedCampaign(remoteMessage.data))
             return
 
@@ -79,7 +79,7 @@ class FirebaseReceiver : FirebaseMessagingService() {
 
         remoteView.setTextViewText(R.id.title, title)
         remoteView.setTextViewText(R.id.message, body)
-        remoteView.setImageViewResource(R.id.app_logo, R.drawable.notification_icon)
+        remoteView.setImageViewResource(R.id.app_logo, R.drawable.vision_insurance_icon)
         return remoteView
     }
 }

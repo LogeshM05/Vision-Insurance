@@ -3,27 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.AutoInsuranceFragment">
 
     <TextView
         android:id="@+id/heading1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Health Insurance"
-        android:textSize="20sp"
+        android:text="Auto Insurance"
+        android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@color/text_color"
-        android:layout_marginStart="23dp"/>
+        android:layout_marginStart="@dimen/_20sdp"/>
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/vision_health_insurance_policies_ensure_that_you_and_your_loved_ones_get_read_more"
+        android:text="@string/owning_a_vehicle_is_always_special_to_everyone_but_this_can_at_hard"
         android:layout_below="@id/heading1"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="23dp">
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_20sdp">
     </TextView>
     <TextView
         android:id="@+id/text2"
@@ -32,7 +33,219 @@
         android:text="Read More"
         android:textColor="@color/readtext"
         android:layout_below="@id/heading1"
-        android:layout_marginTop="26dp"
-        android:layout_marginStart="125dp">
+        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginStart="@dimen/_87sdp">
     </TextView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_below="@+id/text2"
+        app:cardCornerRadius="@dimen/_10sdp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/card_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_14ssp"
+                android:text=""
+                android:textColor="@color/black2"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_15sdp"/>
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:layout_width="@dimen/_250sdp"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/_10sdp"
+               android:layout_marginStart="@dimen/_10sdp"
+               app:boxStrokeColor="@color/off_white"
+               app:hintTextColor="@color/dark_grey">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/car_register"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:hint="Enter your car number"
+                   android:textSize="@dimen/_14ssp"
+                   android:maxLength="12"
+                   android:inputType="textWebEmailAddress" />
+           </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="@dimen/_250sdp"
+                android:id="@+id/submitButton"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_below="@+id/topLinear"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:textAllCaps="false"
+                android:text="View Prices"
+                android:textColor="@color/black2"
+                android:backgroundTint="@color/yellow"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/bottomLayout2"
+        android:layout_width="@dimen/_350sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_below="@+id/bottomLayout"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="@dimen/_110sdp"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/accident_coverage">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/light_grey"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Personal accident cover" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="@dimen/_110sdp"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/liability">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Third party legal liability"
+                    android:textAlignment="center"
+                    android:textColor="@color/light_grey"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+           </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="@dimen/_350sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_below="@+id/card1"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="@dimen/_110sdp"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/comprehensive">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/light_grey"
+                    android:textStyle="bold"
+                    android:text="Comprehensive coverage"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="@dimen/_110sdp"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/depreciation">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="Zero depreciation"
+                    android:textColor="@color/light_grey"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
     </RelativeLayout>

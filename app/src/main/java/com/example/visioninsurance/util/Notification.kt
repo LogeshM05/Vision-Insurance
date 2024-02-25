@@ -43,9 +43,14 @@ private var notifManager: NotificationManager? = null
             builder = NotificationCompat.Builder(context, id)
             val intent = Intent(context, DashBoard::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+            val pendingIntent = PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+            )
             builder.setContentTitle(title) // required
-                .setSmallIcon(R.drawable.notification_icon) // required
+                .setSmallIcon(R.drawable.vision_insurance_logo) // required
                 .setContentText(message) // required
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true)
@@ -58,9 +63,14 @@ private var notifManager: NotificationManager? = null
             builder = NotificationCompat.Builder(context, "")
             intent = Intent()
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+            pendingIntent = PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
             builder.setContentTitle(message) // required
-                .setSmallIcon(R.drawable.notification_icon) // required
+                .setSmallIcon(R.drawable.vision_insurance_logo) // required
                 .setContentText(title) // required
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true)

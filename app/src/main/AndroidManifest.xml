@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" package="com.example.visioninsurance">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"
+        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />
+
     <application
         android:name=".common.VisionInsurance"
         android:allowBackup="true"
@@ -18,19 +20,17 @@
         <activity
             android:name=".activity.DashBoard"
             android:exported="true"
-            android:theme="@style/Theme.VisionInsurance.NoActionBar">
-
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:autoVerify="true">
-
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="https"
-                    android:host="www.visioninsurance.com"
-                    android:pathPrefix="/dashboard" />
-
+                <data
+                    android:host="https://www.visioninsurance.com"
+                    android:pathPrefix="/dashboard"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity
@@ -41,11 +41,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
 
-<!--                <action android:name="android.intent.action.VIEW" />-->
-<!--                <category android:name="android.intent.category.BROWSABLE" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
+                <!-- <action android:name="android.intent.action.VIEW" /> -->
+                <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
 
-<!--                <data android:scheme="https" android:host="www.vision.com" />-->
+
+                <!-- <data android:scheme="https" android:host="https://www.vision.com" /> -->
 
             </intent-filter>
 
@@ -56,36 +57,38 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.VisionInsurance.NoStatusBar">
-
-
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="https"
-                    android:host="www.visioninsurance.com"
-                    android:pathPrefix="/mainactivity" />
+                <data
+                    android:host="https://www.visioninsurance.com"
+                    android:pathPrefix="/mainactivity"
+                    android:scheme="https" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <meta-data
             android:name="sdk.default_notification_icon"
-            android:resource="@drawable/notification_icon" />
+            android:resource="@drawable/vision_insurance_logo" />
         <meta-data
-            android:name="sdk.default_notification _icon_transparent"
-            android:resource="@drawable/ic_outline_notifications_active_24" />
+            android:name="sdk.default_notification_icon_transparent"
+            android:resource="@drawable/vision_insurance_bg2" />
         <meta-data
             android:name="sdk.default_notification_color"
-            android:resource="@color/teal_200" />
+            android:resource="@color/background" />
+        <!--        <meta-data-->
+        <!--            android:name="resulticks.key"-->
+        <!--            android:value="api_key_b78db6b3-9462-4132-a4d3-894db10b3782" />-->
         <meta-data
             android:name="resulticks.key"
-            android:value="api_key_b78db6b3-9462-4132-a4d3-894db10b3782" />
+            android:value="api_key_7def9b46-cb52-48c7-a858-5213b2cb5e72" />
         <service
             android:name=".fcm.FirebaseReceiver"
             android:exported="false">

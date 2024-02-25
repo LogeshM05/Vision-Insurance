@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/retirement"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
@@ -18,10 +19,10 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="340dp"
-                android:layout_height="650dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="@dimen/_270sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_60sdp"
                 android:background="@drawable/form_background">
 
                 <TextView
@@ -29,23 +30,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Name"
-                    android:textSize="18sp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="20dp"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_18sdp"
                     android:textStyle="bold"
                     android:textColor="@color/resul_blue"/>
 
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingStart="8dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
                     android:layout_below="@+id/textView1"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textColorHint="@color/dark_grey"
                     android:hint="Enter your name"
                     android:inputType="textPersonName"
@@ -57,24 +58,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Phone Number"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/_14ssp"
                     android:layout_below="@+id/editText1"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_18sdp"
                     android:textStyle="bold"
                     android:textColor="@color/resul_blue"/>
 
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingStart="8dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
                     android:layout_below="@+id/textView2"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textColorHint="@color/dark_grey"
                     android:hint="Enter your number"
                     android:inputType="number"
@@ -85,24 +86,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Email"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/_14ssp"
                     android:layout_below="@+id/editText2"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_18sdp"
                     android:textStyle="bold"
                     android:textColor="@color/resul_blue"/>
 
                 <EditText
                     android:id="@+id/editText3"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingStart="8dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
                     android:layout_below="@+id/textView3"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textColorHint="@color/dark_grey"
                     android:hint="Enter your email"
                     android:inputType="textEmailAddress"
@@ -113,10 +114,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Gender"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/_14ssp"
                     android:layout_below="@+id/editText3"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_18sdp"
                     android:textStyle="bold"
                     android:textColor="@color/resul_blue"/>
                 <RadioGroup
@@ -124,8 +125,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView4"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_30sdp"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -136,9 +137,9 @@
                         android:button="@color/white"
                         android:textColor="@color/black"
                         android:background="@drawable/radio_selector"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:padding="10dp"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         android:text="M" />
 
                     <RadioButton
@@ -149,9 +150,9 @@
                         android:background="@drawable/radio_selector"
                         android:button="@color/white"
                         android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
+                        android:padding="10dp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         android:text="F" />
 
                     <RadioButton
@@ -160,9 +161,9 @@
                         android:layout_width="wrap_content"
                         android:textAlignment="center"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:padding="10dp"
                         android:background="@drawable/radio_selector"
                         android:button="@color/black"
                         android:text="Other" />
@@ -172,21 +173,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/radioGroup"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:backgroundTint="@color/light_blue"
                     android:buttonTint="@color/light_blue"
                     android:text="I have agreed to the terms and condition" />
                 <Button
                     android:id="@+id/submit"
                     android:layout_below="@+id/conditions"
-                    android:layout_marginStart="130dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="@dimen/_95sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="wrap_content"
                     android:textColor="@color/white"
+                    android:layout_marginBottom="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:text="Submit"
-                    android:backgroundTint="@color/resul_blue"
+                    app:backgroundTint="@null"
                     android:background="@drawable/button_bg">
                 </Button>
             </RelativeLayout>
